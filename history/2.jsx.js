@@ -20,8 +20,11 @@ let eleObj = {
     }
 };
 function render(eleObj, container) {
+    //解构出标签的类型和属性对象
     let {type, props} = eleObj;
+    //创建一个DOM元素
     let ele = document.createElement(type);
+    //循环属性对象
     for (let attr in props) {
         if (attr == 'children') {
             props[attr].forEach(function (item) {
@@ -33,6 +36,7 @@ function render(eleObj, container) {
                 }
             });
         } else if (attr == 'className') {
+            //ele.className = props[attr];
             ele.setAttribute('class', props[attr]);
         } else {
             ele.setAttribute(attr, props[attr]);
