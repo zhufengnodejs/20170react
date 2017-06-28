@@ -1,18 +1,37 @@
-import React from 'react';
-import ReactDOM,{render} from 'react-dom';
-/**
- 组件的二种定义方式，以及他们之间的区别
- 1.组件定义的第一种方法是函数,参数是属性对象
- {msg:"hello",id:"5"}
- 2.组件的首字母一定是大写字母
- 3.组件定义完后可以像React元素一样使用
- 组件的渲染过程
-  1. 封装props对象
-  2. 调用组件函数，得到返回的React元素
-  3. ReactDOM把React元素转成真实的DOM元素并且插入到目标容器内部
- **/
-let Message = (props)=>{
-    return <h1 style={props.style}>{props.msg}</h1>
+import React,{Component} from 'react';
+import {render} from 'react-dom';
+import PropTypes from 'prop-types';
+class Person extends Component{
+    constructor(){
+        super();
+        //为组件增加一个初始的状态 默认值为true
+        this.state = {happy:true};
+    }
+    //默认属性对象
+    static defaultProps = {
+        name:'无名'
+    }
+    //如果定义组件的时候希望传入组件的属性有类型和是否必填的限制
+    //The prop `age` is marked as required in `Person`, but its value is `undefined`
+    //Invalid prop `age` of type `string` supplied to `Person`, expected `number`.
+    static propTypes = {
+        name:PropTypes.string,
+        age:PropTypes.number.isRequired
+    }
+    handleClick = ()=>{
+        this.setState({
+            happy:!this.state.happy
+        });
+    }
+    render(){
+        let heart = this.state.happy?'开心':'难过';
+        return (
+            <div>
+                <p>姓名:{this.props.name}</p>
+                <p>心情:{heart}</p>
+                <button onClick={this.handleClick}>变心</button>
+            </div>
+        )
+    }
 }
-
-render(<Message msg="hello" style={{color:'red'}} hobby={['a','b']}></Message>,window.app);
+render(<Person name="zfpx" age={100}/>,window.app);
