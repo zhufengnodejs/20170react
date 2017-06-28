@@ -1,23 +1,18 @@
 import React,{Component} from 'react';
 import {render} from 'react-dom';
-class Sum extends Component{
-    constructor(){
-        super();
-        this.state = {a:100,b:100}
-    }
-    handleChange = (event,attr)=>{
-        //当setstate的时候，如果新的状态对象不包含老状态的一些属性，那么老属性的值则保持不变
-        this.setState({
-            [attr]:parseInt(event.target.value)
-        });
-        //{...this.state,{...newState}}
+// 非受控组件 非受控元素，值不受状态控制
+class Sum extends React.Component{
+    handleChange = (event)=>{
+        let a = parseInt(this.refs.a.value||0);
+        let b = parseInt(this.refs.b.value||0);
+        this.refs.result.value = a+b;
     }
     render(){
         return (
-            <div>
-                <input type="text" value={this.state.a} onChange={event=>this.handleChange(event,'a')}/>+
-                <input type="text" value={this.state.b} onChange={event=>this.handleChange(event,'b')}/>=
-                <input type="text" value={this.state.a+this.state.b}/>
+            <div onChange={this.handleChange}>
+                <input ref="a" type="text" />+
+                <input ref="b" type="text" />=
+                <input ref="result" type="text"/>
             </div>
         )
     }
