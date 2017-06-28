@@ -1,27 +1,25 @@
 import React,{Component} from 'react';
 import {render} from 'react-dom';
-import PropTypes from 'prop-types';
-/**
- * 受控组件 受状态控制
- * 非受控组件
- *
- */
-class Input extends React.Component{
+class Sum extends Component{
     constructor(){
         super();
-        this.state = {val:''};
+        this.state = {a:100,b:100}
     }
-    handleChange = (event)=>{
-        let val = event.target.value;
-        this.setState({val});
+    handleChange = (event,attr)=>{
+        //当setstate的时候，如果新的状态对象不包含老状态的一些属性，那么老属性的值则保持不变
+        this.setState({
+            [attr]:parseInt(event.target.value)
+        });
+        //{...this.state,{...newState}}
     }
     render(){
         return (
             <div>
-                <p>{this.state.val}</p>
-                <input onChange={this.handleChange} type="text" value={this.state.val}/>
+                <input type="text" value={this.state.a} onChange={event=>this.handleChange(event,'a')}/>+
+                <input type="text" value={this.state.b} onChange={event=>this.handleChange(event,'b')}/>=
+                <input type="text" value={this.state.a+this.state.b}/>
             </div>
         )
     }
 }
-render(<Input/>,window.app);
+render(<Sum/>,window.app);
