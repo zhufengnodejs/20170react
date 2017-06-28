@@ -1,20 +1,37 @@
 import React,{Component} from 'react';
 import {render} from 'react-dom';
-// 非受控组件 非受控元素，值不受状态控制
-class Sum extends React.Component{
-    handleChange = (event)=>{
-        let a = parseInt(this.refs.a.value||0);
-        let b = parseInt(this.refs.b.value||0);
-        this.refs.result.value = a+b;
-    }
+import 'bootstrap/dist/css/bootstrap.css'
+//复合组件
+class Panel extends Component{
+   constructor(){
+       super();
+       this.state = {color:'black'};
+   }
+   render(){
+       return (
+           <div className="panel panel-default">
+               <button onClick={()=>this.setState({color:'red'})}>红</button><button onClick={()=>this.setState({color:'green'})}>绿</button>
+               <PanelHead color={this.state.color} head={this.props.head}/>
+               <PanelBody body={this.props.body}/>
+               <PanelFooter footer={this.props.footer}/>
+           </div>
+       )
+   }
+}
+
+class PanelHead extends Component{
+   render(){
+       return <div style={{color:this.props.color}} className="panel-heading">{this.props.head}</div>
+   }
+}
+class PanelBody extends Component{
     render(){
-        return (
-            <div onChange={this.handleChange}>
-                <input ref="a" type="text" />+
-                <input ref="b" type="text" />=
-                <input ref="result" type="text"/>
-            </div>
-        )
+        return <div className="panel-body">{this.props.body}</div>
     }
 }
-render(<Sum/>,window.app);
+class PanelFooter extends Component{
+    render(){
+        return <div className="panel-footer">{this.props.footer}</div>
+    }
+}
+render(<Panel head="头" body="体" footer="尾"/>,window.app);
