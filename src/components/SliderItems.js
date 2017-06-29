@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 export default class Home extends Component {
  render() {
   let style = {
-   width:this.props.items.length*500,
+   width:(this.props.items.length+1)*500,
    left:this.props.index*-500,
    transitionDuration:this.props.speed+'s'
   }
@@ -15,6 +15,9 @@ export default class Home extends Component {
       </li>
      ))
     }
+    <li key={this.props.items.length} className="slider">
+     <img src={this.props.items[0].src}/>
+    </li>
    </ul>
   )
  }

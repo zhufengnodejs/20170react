@@ -59,3 +59,22 @@ ul, li {
     float:right;
     margin-right:10px;
 }
+.slider-dots{
+    width:500px;
+    position: absolute;
+    bottom:10px;
+    text-align: center;
+}
+.slider-dots .dot{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    margin-left:5px;
+    background-color: #CCCCCC;
+    cursor: pointer;
+}
+
+.slider-dots .dot.active{
+    background-color: #888888;
+}
