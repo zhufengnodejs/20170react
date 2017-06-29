@@ -44,9 +44,7 @@ class Counter extends Component{
             <div style={{border:'1px solid red',padding:'5px'}}>
                 <p>{this.state.num}</p>
                 <button onClick={this.handleClick}>+</button>
-                {
-                    this.state.num%3===0?<SubCounter num={this.state.num}/>:null
-                }
+                <SubCounter num={this.state.num}/>
 
             </div>
         )
@@ -58,7 +56,8 @@ class Counter extends Component{
 //子计数器
 class SubCounter extends Component{
   //组件将要接收到新的属性对象
-  componentWillReceiveProps(){
+  componentWillReceiveProps(newProps){
+      console.log('mynewProps',newProps);
       console.log('SubCounter componentWillReceiveProps');
   }
   shouldComponentUpdate(newProps,newState){
