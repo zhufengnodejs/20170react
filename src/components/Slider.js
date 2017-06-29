@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './slider.css';
 import SliderItems from './SliderItems';
+import SliderArrows from './SliderArrows';
 export default class Slider extends Component {
  constructor(){
   super();
@@ -10,6 +11,9 @@ export default class Slider extends Component {
  //传入步长，得到新的index值
  turn = (step)=>{
   let index = this.state.index + step;
+  if(index < 0){
+     index = this.props.items.length-1;
+  }
   if(index >= this.props.items.length){
      index = 0;
   }
@@ -28,10 +32,15 @@ export default class Slider extends Component {
   }
  }
  render() {
-
   return (
-   <div className="slider-wrapper">
-     <SliderItems items={this.props.items} index={this.state.index} speed={this.props.speed}/>
+   <div onMouseOver={()=>clearInterval(this.$timer)}
+        onMouseOut={()=>this.go()}
+        className="slider-wrapper">
+     <SliderItems
+      items={this.props.items}
+      index={this.state.index}
+      speed={this.props.speed}/>
+     <SliderArrows turn={this.turn}/>
    </div>
   )
  }
