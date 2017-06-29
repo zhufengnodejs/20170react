@@ -41,14 +41,37 @@ class Counter extends Component{
     render(){
         console.log('2.render 组件挂载');
         return (
-            <div>
+            <div style={{border:'1px solid red',padding:5}}>
                 <p>{this.state.num}</p>
                 <button onClick={this.handleClick}>+</button>
+                <SubCounter num={this.state.num}/>
             </div>
         )
     }
     componentDidMount(){
         console.log('3.componentDidMount 组件挂载完成');
     }
+}
+//子计数器
+class SubCounter extends Component{
+  //组件将要接收到新的属性对象
+  componentWillReceiveProps(){
+      console.log('SubCounter componentWillReceiveProps');
+  }
+  shouldComponentUpdate(newProps,newState){
+      console.log('newProps',newProps);
+      if(newProps.num%3===0){
+          return true;
+      }else{
+          return false;
+      }
+  }
+  render(){
+      return (
+          <div style={{border:'1px solid blue'}}>
+              <p>{this.props.num}</p>
+          </div>
+      )
+  }
 }
 render(<Counter/>,window.app);
