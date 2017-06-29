@@ -5,7 +5,14 @@ export default class MessageBox extends Component{
     constructor(){
         super();
         //定义默认状态对象 messages是消息的数组
-        this.state = {messages:[{username:'张三',content:'今天天气很好',createAt:new Date()}]};
+        this.state = {messages:[]};
+    }
+    addMessage = (message)=>{
+        //状态对象每次都要生成一个新对象
+       let messages = [...this.state.messages,message];
+       this.setState({
+           messages
+       });
     }
     render(){
         return (
