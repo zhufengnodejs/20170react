@@ -41,10 +41,13 @@ class Counter extends Component{
     render(){
         console.log('2.render 组件挂载');
         return (
-            <div style={{border:'1px solid red',padding:5}}>
+            <div style={{border:'1px solid red',padding:'5px'}}>
                 <p>{this.state.num}</p>
                 <button onClick={this.handleClick}>+</button>
-                <SubCounter num={this.state.num}/>
+                {
+                    this.state.num%3===0?<SubCounter num={this.state.num}/>:null
+                }
+
             </div>
         )
     }
@@ -65,6 +68,9 @@ class SubCounter extends Component{
       }else{
           return false;
       }
+  }
+  componentWillUnmount(){
+      console.log('组件将要被销毁');
   }
   render(){
       return (
