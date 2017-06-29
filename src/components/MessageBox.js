@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import MessageList from './MessageList';
+import MessageForm from './MessageForm';
 export default class MessageBox extends Component{
     constructor(){
         super();
@@ -15,16 +17,10 @@ export default class MessageBox extends Component{
                                 <h2 className="text-center">欢迎来到珠峰留言版</h2>
                             </div>
                             <div className="panel-body">
-                                <ul className="list-group">
-                                    {
-                                        this.state.messages.map((message,index)=>(
-                                            <li className="list-group-item">{message.username}:{message.content} <span className="pull-right">{message.createAt.toLocaleString()}</span></li>
-                                        ))
-                                    }
-                                </ul>
+                                <MessageList messages={this.state.messages}/>
                             </div>
                             <div className="panel-footer">
-
+                                <MessageForm/>
                             </div>
                         </div>
                     </div>
