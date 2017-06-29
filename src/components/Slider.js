@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './slider.css';
+import SliderItems from './SliderItems';
 export default class Slider extends Component {
  constructor(){
   super();
@@ -9,31 +10,28 @@ export default class Slider extends Component {
  //传入步长，得到新的index值
  turn = (step)=>{
   let index = this.state.index + step;
+  if(index >= this.props.items.length){
+     index = 0;
+  }
   this.setState({index});
+ }
+ //启动自动轮播
+ go =()=>{
+  this.$timer = setInterval(()=>{
+   this.turn(1);
+  },this.props.delay*1000);
  }
  componentDidMount(){
   //如果自动轮播为true,开启自动轮播
   if(this.props.auto){
-    this.$timer = setInterval(()=>{
-      this.turn(1);
-    },this.props.delay*1000)
+    this.go();
   }
  }
  render() {
-  let style = {
-    width:this.props.items.length*500,
-    left:this.state.index*-500,
-    transitionDuration:this.props.speed+'s'
-  }
+
   return (
    <div className="slider-wrapper">
-    <ul style={style} className="sliders">
-     {
-      this.props.items.map((item,index)=>(
-       <li key={index} className="slider"><img src={item.src}/></li>
-      ))
-     }
-    </ul>
+     <SliderItems items={this.props.items} index={this.state.index} speed={this.props.speed}/>
    </div>
   )
  }
