@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 export default class MessageForm extends Component{
-    handleSubmit = ()=>{
+    handleSubmit = (event)=>{
+      event.preventDefault();//阻止默认事件，防止提交表单
       //获得用户名的值
       let username = this.username.value;
       //获得内容的值
       let content = this.content.value;
-
+      this.props.addMessage({username,content,createAt:new Date()});
     }
     render(){
         return (

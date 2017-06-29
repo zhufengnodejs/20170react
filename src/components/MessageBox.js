@@ -10,9 +10,7 @@ export default class MessageBox extends Component{
     addMessage = (message)=>{
         //状态对象每次都要生成一个新对象
        let messages = [...this.state.messages,message];
-       this.setState({
-           messages
-       });
+       this.setState({messages});
     }
     render(){
         return (
@@ -27,7 +25,7 @@ export default class MessageBox extends Component{
                                 <MessageList messages={this.state.messages}/>
                             </div>
                             <div className="panel-footer">
-                                <MessageForm/>
+                                <MessageForm addMessage={this.addMessage}/>
                             </div>
                         </div>
                     </div>
