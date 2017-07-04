@@ -21,5 +21,15 @@ let createStore = (reducer)=>{
   dispatch();
   return {getState,dispatch,subscribe}
 }
+let combineReducers = (reducers)=>{
+  //返回的还是一个reducer
+  return function(state={},action={}){
+     let newState = {};
+     for(var key in reducers){// key counter,todos
+       newState[key] = reducers[key](state[key],action);
+     }
+     return newState;
+  }
+}
 
-export  {createStore};
+export  {createStore,combineReducers};
