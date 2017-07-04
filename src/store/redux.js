@@ -22,4 +22,4 @@ let createStore = (reducer)=>{
   return {getState,dispatch,subscribe}
 }
 
-export default createStore;
+export  {createStore};

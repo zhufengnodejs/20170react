@@ -3,7 +3,8 @@ export default class Counter extends Component{
   render(){
     return (
       <div>
-        Counter
+        <p></p>
+        <button></button>
       </div>
     )
   }
