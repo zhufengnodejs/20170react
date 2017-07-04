@@ -25,8 +25,13 @@ let combineReducers = (reducers)=>{
   //返回的还是一个reducer
   return function(state={},action={}){
      let newState = {};
-     for(var key in reducers){// key counter,todos
-       newState[key] = reducers[key](state[key],action);
+     //{counter, todos}
+    console.log(state);
+    for(var attr in reducers){// key "counter","todos"
+       //newState["counter"] = counter(state.counter,action);
+       //newState["todos"] = counter(state.todos,action);
+      console.log(state[attr]);
+      newState[attr] = reducers[attr](state[attr],action);
      }
      return newState;
   }

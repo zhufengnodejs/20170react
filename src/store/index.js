@@ -23,9 +23,6 @@ let todos = (state = {list: []}, action = {}) => {
    }
 }
 //合并成后的reducer还是一个reducer
-let reducer = combineReducers({
-  counter,
-  todos
-});
+let reducer = combineReducers({counter, todos});
 let store = createStore(reducer);
 export default store;
