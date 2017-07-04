@@ -14,22 +14,16 @@ let reducer = (state=0,action={})=>{
   }
 }
 let store = createStore(reducer);
+store.subscribe(()=>{
+  ReactDOM.render(<Counter/>,document.querySelector('#root'));
+})
 class Counter extends React.Component{
-  constructor(){
-    super();
-    this.state = {number:store.getState()};
-  }
-  componentWillMount(){
-    store.subscribe(()=>{
-      this.setState({number:store.getState()});
-    })
-  }
   render(){
     return (
       <div>
-        <p>{this.state.number}</p>
+        <p>{store.getState()}</p>
         <button onClick={()=>store.dispatch({type:ADD})}>+</button>
-        <button  onClick={()=>store.dispatch({type:SUB})}>-</button>
+        <button onClick={()=>store.dispatch({type:SUB})}>-</button>
       </div>
     )
   }
