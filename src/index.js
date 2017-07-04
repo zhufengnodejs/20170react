@@ -1,16 +1,26 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-//defaultStyle 默认的样式对象
-//props.style  传进来的样式对象
-function getDefaultStyledPost(defaultStyle){
-   function Post(props){
-     return <p style={{...defaultStyle,...props.style}}>{props.content}</p>
-   }
-   return Post;
+
+class App extends React.Component{
+  render(){
+    return (
+      <ul>
+        {
+          React.Children.map(this.props.children,(item,index)=>(
+            <li key={index}>{item}</li>
+          ))
+        }
+      </ul>
+    )
+  }
 }
-const Post = getDefaultStyledPost({ color: 'red' })
+//子元素也是属性的一种，因为它也是从父组件传下来的
+ReactDOM.render(<App>
+  <span>中</span>
+</App>, root);
 
-/*  <Post style={{ color: 'blue', fontSize: '13px' }} />
-<Post style={{ fontSize: '12px' }} />*/
-
-ReactDOM.render(<Post content="任意内容" style={{ fontSize: '13px' }} />, root);
+<ul>
+  <li><span>大</span></li>
+  <li><span>中</span></li>
+  <li><span>小</span></li>
+</ul>
