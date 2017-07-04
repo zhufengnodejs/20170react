@@ -1,28 +1,17 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'
-function map(items,fn){
-  if(!items instanceof Array)
-    items = [items];
-  return items.map(fn);
-}
-class BlackBorderContainer extends Component {
-  render(){
-    return (
-      <div>
-        {
-          map(this.props.children,(item,index)=>(
-            <div key={index} className="black-border">{item}</div>
-          ))
-        }
-      </div>
-    )
-  }
+let initState = {
+  color:'white'
 }
 
-ReactDOM.render(<BlackBorderContainer>
-  <div className='name'>My Name：Lucy</div>
-  <p className='age'>
-    My Age：<span>12</span>
-  </p>
-</BlackBorderContainer>,root);
+//就是可以用来创建仓库的方法
+let createStore = (reducer)=>{
+  //状态
+  let state;
+
+}
+//管理员
+let reducer = ()=>{
+
+}
+let store = createStore();
+
+
