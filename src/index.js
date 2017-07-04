@@ -1,12 +1,13 @@
+//初始状态对象
 let initState = {
   color:'white'
 }
-//改变颜色
+//action type 改变颜色
 let CHANGE_COLOR = 'CHANGE_COLOR';
 
 //就是可以用来创建仓库的方法
 let createStore = (reducer)=>{
-  //状态
+  //状态树 ，整个应用只能有一个store,只能有一个状态树
   let state;
   //存放所有的监听函数
   let listeners = [];
@@ -23,18 +24,26 @@ let createStore = (reducer)=>{
   let subscribe = (listener)=>{
     listeners.push(listener);
   }
+  //就是为了获得初始状态
+  dispatch();
   return {getState,dispatch,subscribe}
 }
 //管理员 接收老的状态和action,返回新的状态
+//dispatch({type:CHANGE_COLOR,color:'green'});
 let reducer = (state=initState,action={})=>{
   switch(action.type){
-    case CHANGE_COLOR:
+    case CHANGE_COLOR://想改变状态中color的值
       return {color:action.color};
     default:
       return state;
   }
 }
 let store = createStore(reducer);
+store.subscribe(()=>{
+  console.log(store.getState());
+})
+store.dispatch({type:CHANGE_COLOR,color:'red'})
+store.dispatch({type:CHANGE_COLOR,color:'green'})
 
 
 
