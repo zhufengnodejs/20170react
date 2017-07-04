@@ -1,41 +1,16 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-class PercentageShower extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.percent}
-      </div>
-    )
-  }
+//defaultStyle 默认的样式对象
+//props.style  传进来的样式对象
+function getDefaultStyledPost(defaultStyle){
+   function Post(props){
+     return <p style={{...defaultStyle,...props.style}}>{props.content}</p>
+   }
+   return Post;
 }
-class Input extends Component {
-  handleChange = (event) => {
-    this.props.change((event.target.value * 100).toFixed(2) + '%');
-  }
+const Post = getDefaultStyledPost({ color: 'red' })
 
-  render() {
-    return <input type="number" onChange={this.handleChange}/>
-  }
-}
-class PercentageApp extends Component {
-  constructor(props) {
-    super();
-    //定义一个默认状态
-    this.state = {percent: '30%'};
-  }
+/*  <Post style={{ color: 'blue', fontSize: '13px' }} />
+<Post style={{ fontSize: '12px' }} />*/
 
-  change = (percent) => {
-    this.setState({percent});
-  }
-
-  render() {
-    return (
-      <div>
-        <Input change={this.change}/>
-        <PercentageShower percent={this.state.percent}/>
-      </div>
-    )
-  }
-}
-ReactDOM.render(<PercentageApp/>, root);
+ReactDOM.render(<Post content="任意内容" style={{ fontSize: '13px' }} />, root);
