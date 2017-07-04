@@ -1,9 +1,9 @@
 //初始状态对象
 let initState = {
-  number:0
+  color:'white'
 }
-//action type 加1
-let INCREMENT = 'INCREMENT';
+//action type 改变颜色
+let CHANGE_COLOR = 'CHANGE_COLOR';
 
 //就是可以用来创建仓库的方法
 let createStore = (reducer)=>{
@@ -32,20 +32,18 @@ let createStore = (reducer)=>{
 //dispatch({type:CHANGE_COLOR,color:'green'});
 let reducer = (state=initState,action={})=>{
   switch(action.type){
-    case INCREMENT://想改变状态中color的值
-      return {number:state.number+1};
+    case CHANGE_COLOR://想改变状态中color的值
+      return {color:action.color};
     default:
       return state;
   }
 }
 let store = createStore(reducer);
-let render = ()=>{
-  document.querySelector('#number').innerHTML =  store.getState().number;
-}
-store.subscribe(render);
-render();
-document.querySelector('#addBtn').addEventListener('click',function(){
-  store.dispatch({type:INCREMENT});
+store.subscribe(()=>{
+  console.log(store.getState());
 })
+store.dispatch({type:CHANGE_COLOR,color:'red'})
+store.dispatch({type:CHANGE_COLOR,color:'green'})
+
 
 
