@@ -21,7 +21,10 @@ let highOrder = (_component) => {
     }
     //{...this.state} 就是把this.state的属性全部展开传给_component
     render(){
-      return <_component {...this.state}/>
+      return <_component
+        add={()=>store.dispatch({type:'ADD'})}
+        sub={()=>store.dispatch({type:'SUB'})}
+        {...this.state}/>
     }
   }
   return Proxy;
@@ -32,7 +35,8 @@ class Counter extends React.Component{
     return (
       <div>
         <p>{this.props.number}</p>
-        <button>+</button>
+        <button onClick={this.props.add}>+</button>
+        <button onClick={this.props.sub}>-</button>
       </div>
     )
   }
