@@ -16,7 +16,7 @@ class Todo extends Component{
                 <input type="text" onKeyDown={this.handleChange}/>
                 <ul>
                   {
-                      this.props.list.map((item,index)=>(
+                    this.props.list&&this.props.list.map((item,index)=>(
                         <li key={index}>{item}</li>
                       ))
                   }
@@ -25,4 +25,8 @@ class Todo extends Component{
         )
     }
 }
-export default connect()(Todo);
+let mapStateToProps = state=>state.todos;
+let mapDispatchToProps = dispatch=>({
+  addTodo:(title)=>dispatch({type:ADD_TODO,title})
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Todo);

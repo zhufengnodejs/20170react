@@ -13,5 +13,9 @@ class Counter extends Component{
         )
     }
 }
-
-export default connect()(Counter);
+let mapStateToProps = state => state.counter;
+let mapDispatchToProps = dispatch => ({
+  add:()=>dispatch({type:ADD}),
+  sub:()=>dispatch({type:SUB})
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Counter);

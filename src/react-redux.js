@@ -14,7 +14,7 @@ let connect = (mapStateToProps,mapDispatchToProps) => (_component) => {
       super();
       //store.getState() {counter:{number:0},todos:{list:[]}}
       //把状态树映射为当前Proxy组件的state，也就是_component的属性
-      this.state = mapStateToProps(this.context.store.getState());
+      this.state = {};
       //this.state = {number:0}; state.counter
     }
 //真正的connect方法是从上下文对象获取的store
@@ -38,4 +38,17 @@ let connect = (mapStateToProps,mapDispatchToProps) => (_component) => {
   return Proxy;
 }
 
-export {connect};
+class Provider extends React.Component{
+  static childContextTypes = {
+    store:React.PropTypes.object
+  }
+  getChildContext(){
+    //从当前组件的属性中拿到store,然后传给上下文对象
+    return {store:this.props.store};
+  }
+  render(){
+    return this.props.children
+  }
+}
+
+export {connect,Provider};
