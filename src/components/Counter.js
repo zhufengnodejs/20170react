@@ -6,12 +6,14 @@ export default class Counter extends Component{
       super(props);
       this.state = {number:0};//定义默认状态对象
     }
+    //当组件将要挂载到页面中的时候
     componentWillMount(){
       //订阅方法会返回一个取消订阅的函数
       this.unSubscribe = store.subscribe(()=>{
         this.setState({number:store.getState().counter.number});
       })
     }
+    //将组件要被销毁的时候
     componentWillUnmount(){
       this.unSubscribe();
     }

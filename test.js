@@ -1,5 +1,13 @@
-let obj = {a:0,b:0}
-for(var attr in obj){
-  obj[attr] = obj[attr]+1;
+let listeners = [];
+let subscribe = (listener)=>{
+  listeners.push(listener);
+  return function(){
+    listeners = listeners.filter(function(item){
+      return item != listener;
+    });
+  }
 }
-console.log(obj);
+let un = subscribe(function (){console.log('a')});
+console.log(listeners);
+un();
+console.log(listeners);
