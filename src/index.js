@@ -6,26 +6,33 @@ import store from './store';
  * 可以接收一个普通的组件
  **/
 import connect from './connect';
-
-class Counter extends React.Component {
-  render() {
+class Todo extends React.Component{
+  handleKeyDown = (event)=>{
+    if(event.keyCode == 13){
+      let title = event.target.value;
+      this.props.addTodo(title);
+      // dispatch({type:'ADD_TODO',title:val});
+    }
+  }
+  render(){
+    // state.todos = {list:['a']}
     return (
       <div>
-        <p>{this.props.number}</p>
-        <button onClick={this.props.add}>+</button>
-        <button onClick={this.props.sub}>-</button>
+        <input type="text" onKeyDown={this.handleKeyDown}/>
+        <ul>
+          {
+            this.props.list.map((item,index)=>(
+              <li key={index}>{item}</li>
+            ))
+          }
+        </ul>
       </div>
     )
   }
 }
-//这是一个转换映射函数，把一个state,也就是redux状态树映射为组件的状态对象 {number:0}
-let mapStateToProps = state => (state.counter)
-//把store的dispatch方法映射为一个对象
-let mapDispatchToProps = dispatch => (
-  {
-    add:()=>dispatch({type:'ADD'}),
-    sub:()=>dispatch({type:'SUB'})
-  }
-)
-let NewCounter = connect(mapStateToProps,mapDispatchToProps)(Counter);
-ReactDOM.render(<NewCounter/>, document.querySelector('#root'));
+let mapStateToProps = state=>state.todos;//{list:[]}
+let mapDispatchToProps = dispatch =>({
+  addTodo:(title)=>dispatch({type:'ADD_TODO',title})
+})
+let NewTodo = connect(mapStateToProps,mapDispatchToProps)(Todo);
+ReactDOM.render(<NewTodo/>,document.querySelector('#root'));
