@@ -26,6 +26,11 @@ let reducer = combineReducers({
   counter,
   todos
 });
+//这就是最终的状态树
+/*{
+  counter:{number: 1},
+  todos:{list:["学习"]}
+}*/
 //stateTree =  {counter:{number:0},todos:{list:[]}}
 // dispatch({type:ADD})
 //stateTree.counter = counter(stateTree.counter,action)

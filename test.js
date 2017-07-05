@@ -1,8 +1,5 @@
-function getPostData(){
-  return new Promise(function(resolve,reject){
-     resolve('hello');
-  });
+let obj = {a:0,b:0}
+for(var attr in obj){
+  obj[attr] = obj[attr]+1;
 }
-getPostData().then(function(postContent){
-  console.log(postContent);
-});
+console.log(obj);
