@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import Counter from './Counter';
-import Todo from './Todo';
+import Todos from './Todos';
 export default class App extends Component{
     render(){
         return (
             <div>
               <Counter/>
-              <Todo/>
+              <Todos/>
             </div>
         )
     }

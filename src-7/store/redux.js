@@ -30,7 +30,6 @@ let combineReducers = (reducers)=>{
     for(var attr in reducers){// key "counter","todos"
        //newState["counter"] = counter(state.counter,action);
        //newState["todos"] = counter(state.todos,action);
-      console.log(state[attr]);
       newState[attr] = reducers[attr](state[attr],action);
      }
      return newState;
