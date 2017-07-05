@@ -1,10 +1,20 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
-
+/**
+ * context 上下文
+ *
+ */
 class App extends Component{
+  //定义子组件上下文类型对象
+  static childContextTypes = {
+     color:React.PropTypes.string
+  }
+  //返回子组件上下文对象
+  getChildContext(){
+    return {color:'yellow'};
+  }
   constructor(){
     super();
-    this.state = {color:'orange'};
   }
   changeColor = (color)=>{
     this.setState({color});
@@ -12,16 +22,20 @@ class App extends Component{
   render(){
     return (
       <div>
-        <Title {...this.state}/>
-        <Content changeColor={this.changeColor} {...this.state}/>
+        <Title/>
+        <Content/>
       </div>
     )
   }
 }
 class Title extends Component{
+  //这是必须写的，只有规定好了，才能得到上下文对象
+  static contextTypes = {
+    color:React.PropTypes.string
+  }
   render(){
     return (
-      <div style={{color:this.props.color}} >标题</div>
+      <div style={{color:this.context.color}} >标题</div>
     )
   }
 }
