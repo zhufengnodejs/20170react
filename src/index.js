@@ -1,20 +1,22 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 /**
  * context 上下文
- *
  */
 class App extends Component{
   //定义子组件上下文类型对象
   static childContextTypes = {
-     color:React.PropTypes.string
+     color:PropTypes.string,
+     changeColor:PropTypes.func
   }
   //返回子组件上下文对象
   getChildContext(){
-    return {color:'yellow'};
+    return {color:this.state.color,changeColor:this.changeColor};
   }
   constructor(){
     super();
+    this.state = {color:'orange'};
   }
   changeColor = (color)=>{
     this.setState({color});
@@ -33,28 +35,39 @@ class Title extends Component{
   static contextTypes = {
     color:React.PropTypes.string
   }
+
   render(){
+    console.log(this.context);
     return (
       <div style={{color:this.context.color}} >标题</div>
     )
   }
 }
 class Theme extends Component{
+  static contextTypes = {
+    color:React.PropTypes.string,
+    changeColor:PropTypes.func
+  }
   render(){
     return (
       <div>
-        <button onClick={()=>this.props.changeColor('red')}>红色</button>
-        <button onClick={()=>this.props.changeColor('green')}>绿色</button>
+        <span style={{color:this.context.color}}>主题</span>
+        <button onClick={()=>this.context.changeColor('red')}>红色</button>
+        <button onClick={()=>this.context.changeColor('green')}>绿色</button>
       </div>
     )
   }
 }
 class Content extends Component{
+  static contextTypes = {
+    color:PropTypes.string,
+    changeColor:PropTypes.func
+  }
   render(){
     return (
       <div>
-        <span style={{color:this.props.color}}>内容</span>
-        <Theme changeColor={this.props.changeColor}/>
+        <span style={{color:this.context.color}}>内容</span>
+        <Theme/>
       </div>
     )
   }
