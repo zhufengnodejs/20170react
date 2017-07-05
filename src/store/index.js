@@ -1,7 +1,5 @@
 import {createStore,combineReducers} from 'redux';
-const ADD = 'ADD';//+1
-const SUB = 'SUB';
-const ADD_TODO = 'ADD_TODO';
+import {ADD,SUB,ADD_TODO} from '../action-types';
 //计数器的reducer
 let counter = (state = {number: 0}, action = {}) => {
   switch (action.type) {

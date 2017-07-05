@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import store from '../store';
+import {ADD,SUB} from '../action-types';
 export default class Counter extends Component{
     constructor(props){
       super(props);
@@ -18,8 +19,8 @@ export default class Counter extends Component{
         return (
             <div>
                 <p>{this.state.number}</p>
-                <button onClick={()=>store.dispatch({type:'ADD'})}>+</button>
-                <button  onClick={()=>store.dispatch({type:'SUB'})}>-</button>
+                <button onClick={()=>store.dispatch({type:ADD})}>+</button>
+                <button  onClick={()=>store.dispatch({type:SUB})}>-</button>
             </div>
         )
     }
