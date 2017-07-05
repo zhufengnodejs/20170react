@@ -2,11 +2,18 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 
 class App extends Component{
+  constructor(){
+    super();
+    this.state = {color:'orange'};
+  }
+  changeColor = (color)=>{
+    this.setState({color});
+  }
   render(){
     return (
       <div>
-        <Title/>
-        <Content/>
+        <Title {...this.state}/>
+        <Content changeColor={this.changeColor} {...this.state}/>
       </div>
     )
   }
@@ -14,7 +21,7 @@ class App extends Component{
 class Title extends Component{
   render(){
     return (
-      <div>标题</div>
+      <div style={{color:this.props.color}} >标题</div>
     )
   }
 }
@@ -22,8 +29,8 @@ class Theme extends Component{
   render(){
     return (
       <div>
-        <button>红色</button>
-        <button>绿色</button>
+        <button onClick={()=>this.props.changeColor('red')}>红色</button>
+        <button onClick={()=>this.props.changeColor('green')}>绿色</button>
       </div>
     )
   }
@@ -32,8 +39,8 @@ class Content extends Component{
   render(){
     return (
       <div>
-        <span>内容</span>
-        <Theme/>
+        <span style={{color:this.props.color}}>内容</span>
+        <Theme changeColor={this.props.changeColor}/>
       </div>
     )
   }
