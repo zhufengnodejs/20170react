@@ -1,38 +1,41 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
-import store from './store';
-/**
- * 生成一个高阶组件的函数 其实就是外层组件
- * 可以接收一个普通的组件
- **/
-import connect from './connect';
-class Todo extends React.Component{
-  handleKeyDown = (event)=>{
-    if(event.keyCode == 13){
-      let title = event.target.value;
-      this.props.addTodo(title);
-      // dispatch({type:'ADD_TODO',title:val});
-    }
-  }
+
+class App extends Component{
   render(){
-    // state.todos = {list:['a']}
     return (
       <div>
-        <input type="text" onKeyDown={this.handleKeyDown}/>
-        <ul>
-          {
-            this.props.list.map((item,index)=>(
-              <li key={index}>{item}</li>
-            ))
-          }
-        </ul>
+        <Title/>
+        <Content/>
       </div>
     )
   }
 }
-let mapStateToProps = state=>state.todos;//{list:[]}
-let mapDispatchToProps = dispatch =>({
-  addTodo:(title)=>dispatch({type:'ADD_TODO',title})
-})
-let NewTodo = connect(mapStateToProps,mapDispatchToProps)(Todo);
-ReactDOM.render(<NewTodo/>,document.querySelector('#root'));
+class Title extends Component{
+  render(){
+    return (
+      <div>标题</div>
+    )
+  }
+}
+class Theme extends Component{
+  render(){
+    return (
+      <div>
+        <button>红色</button>
+        <button>绿色</button>
+      </div>
+    )
+  }
+}
+class Content extends Component{
+  render(){
+    return (
+      <div>
+        <span>内容</span>
+        <Theme/>
+      </div>
+    )
+  }
+}
+ReactDOM.render(<App/>,document.querySelector('#root'));
