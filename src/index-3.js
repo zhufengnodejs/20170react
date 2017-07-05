@@ -5,7 +5,7 @@ import store from './store';
  * 生成一个高阶组件的函数 其实就是外层组件
  * 可以接收一个普通的组件
  **/
-import connect from './connect';
+import connect from './react-redux';
 class Todo extends React.Component{
   handleKeyDown = (event)=>{
     if(event.keyCode == 13){
