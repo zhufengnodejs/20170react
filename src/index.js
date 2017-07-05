@@ -5,34 +5,7 @@ import store from './store';
  * 生成一个高阶组件的函数 其实就是外层组件
  * 可以接收一个普通的组件
  **/
-
-let connect = (mapStateToProps,mapDispatchToProps) => (_component) => {
-  class Proxy extends React.Component {
-    constructor() {
-      super();
-      //把状态树映射为当前Proxy组件的state，也就是_component的属性
-      this.state = mapStateToProps(store.getState());
-    }
-
-    componentWillMount() {
-      this.unSubscribe = store.subscribe(() => {
-        this.setState(mapStateToProps(store.getState()));
-      })
-    }
-
-    componentWillUnmount() {
-      this.unSubscribe();
-    }
-
-    //{...this.state} 就是把this.state的属性全部展开传给_component
-    render() {
-      return <_component
-        {...mapDispatchToProps(store.dispatch)}
-        {...this.state}/>
-    }
-  }
-  return Proxy;
-}
+import connect from './connect';
 
 class Counter extends React.Component {
   render() {
