@@ -1,4 +1,4 @@
-import {createStore} from 'redux';
+import {createStore,combineReducers} from 'redux';
 const ADD = 'ADD';//+1
 const SUB = 'SUB';
 const ADD_TODO = 'ADD_TODO';
@@ -13,12 +13,21 @@ let counter = (state = {number: 0}, action = {}) => {
       return state;
   }
 }
-
-//reducer是一个函数
-let reducer = (state = {counter: {number: 0}, todos: {list: []}}, action = {}) => {
-  switch (action.type) {
-    case ADD:
-      return {counter: {number: state.counter.number + 1}, todos: state.todos}
+let todos = (state={list:[]},action={})=>{
+  switch(action.type){
+    case ADD_TODO:
+      //reducer一定要返回新的对象
+      return {list:[...state.list,action.title]}
+    default:
+      return state;
   }
 }
-createStore(reducer);
+let reducer = combineReducers({
+  counter,
+  todos
+});
+//stateTree =  {counter:{number:0},todos:{list:[]}}
+// dispatch({type:ADD})
+//stateTree.counter = counter(stateTree.counter,action)
+let store = createStore(reducer);
+export default store;
