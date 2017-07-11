@@ -40,3 +40,16 @@ ul,li{  list-style: none;}
     line-height: 40px;
     vertical-align: middle;
 }
+.words{
+    width:640px;
+    border:1px solid #CCC;
+    box-sizing: border-box;
+    border-top:none;
+}
+.words .word{
+    font-weight: bold;
+    line-height: 2;
+}
+.words .word:hover{
+    background-color: #CCC;
+}
