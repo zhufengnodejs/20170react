@@ -1,4 +1,7 @@
 //创建仓库 reducer就是管理员，用来从老状态和action得到新状态
+//  过程式编程 C
+//  面向对象编程 Java C++
+//  函数式编程 lisp Javascript
 let createStore =(reducer)=>{
  //状态树 stateTree 可以是任意类型 {}
  let state;
@@ -36,7 +39,7 @@ let applyMiddleware = middleware=> createStore => reducer=>{
 
   middleware = middleware({
     getState:store.getState,
-    dispatch:(action)=>dispatch(action)
+    dispatch
   });
   dispatch = middleware(store.dispatch);
   return {
