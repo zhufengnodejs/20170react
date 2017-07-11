@@ -3,6 +3,12 @@ import './App.css'
 import actions from '../store/actions';
 import {connect} from 'react-redux';
 class App extends Component {
+  handleChange = (event)=>{
+    //先获取到关键字
+    let keyword = event.target.value;
+    //然后进行搜索
+    this.props.search(keyword);
+  }
   render() {
     return (
       <div className="container">

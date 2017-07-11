@@ -1,3 +1,3 @@
 export default {
-  search:()=>({type:'SEARCH'})
+  search:(keyword)=>({type:'SEARCH'})
 }
