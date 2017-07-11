@@ -2,35 +2,39 @@
 ul,li{  list-style: none;}
 .container{
     width:640px;
-    height: 140px;
     margin:80px auto;
 }
-.container .logo{
+.container .search-area{
+    height: 140px;
+}
+.search-area .logo{
     width:640px;
     height:100px;
     text-align: center;
 }
-.container .logo img{
+.search-area .logo img{
     width:270px;
-    height:90px;
+    height:100px;
 }
 
-.container .search{
+.search-area .search{
  height:40px;
  width:640px;
 }
-.container .search input{
+.search-area .search input{
     width:500px;
     height:40px;
     vertical-align: middle;
     border:1px solid #CCC;
+    box-sizing: border-box;
 }
-.container .search span{
+.search-area .search span{
     display:inline-block;
-    width:135px;
+    width:140px;
     height:40px;
     background: #3385ff;
     border:1px solid #3385ff;
+    box-sizing: border-box;
     color:#FFF;
     text-align: center;
     line-height: 40px;
