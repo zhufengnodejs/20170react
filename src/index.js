@@ -28,12 +28,20 @@ let reducer = (state = {number: 0}, action = {}) => {
 // redux-thunk
 //dispatch 是包装后的dispatch
 //next是原始的store.dispatch
-let thunk = ({getState,dispatch}) => next => action => {
+/*let thunk = ({getState,dispatch}) => next => action => {
    typeof action == 'function'?action(dispatch):next(action);
+}*/
+let promise = ({getState,dispatch})=>next=>action=>{
+  if(action.then){
+    action.then(function(newAction){//newAction={type:ADD}
+      dispatch(newAction);
+    });
+  }else{
+    next(action);
+  }
 }
 
-
-let store = applyMiddleware(thunk)(createStore)(reducer);
+let store = applyMiddleware(promise)(createStore)(reducer);
 //store.dispatch = action => {
 //typeof action == 'function'?action(next):next(action);
 //}
@@ -47,11 +55,17 @@ function render() {
 `;
   document.querySelector('#addBtn').addEventListener('click', function () {
     //console.log('老状态',store.getState());
-    store.dispatch(function(dispatch){
+    /*store.dispatch(function(dispatch){
       setTimeout(function(){
         dispatch({type:ADD});
       },3000)
-    });
+    });*/
+    //promise初始态 resolve成功态 reject失败态
+    store.dispatch(new Promise(function(resolve,reject){
+      setTimeout(function(){
+        resolve({type:ADD});
+      },3000)
+    }));
     //console.log('新状态',store.getState());
   })
 }
