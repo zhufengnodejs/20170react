@@ -1,0 +1,38 @@
+*{ padding:0; margin:0; }
+ul,li{  list-style: none;}
+.container{
+    width:640px;
+    height: 140px;
+    margin:80px auto;
+}
+.container .logo{
+    width:640px;
+    height:100px;
+    text-align: center;
+}
+.container .logo img{
+    width:270px;
+    height:90px;
+}
+
+.container .search{
+ height:40px;
+ width:640px;
+}
+.container .search input{
+    width:500px;
+    height:40px;
+    vertical-align: middle;
+    border:1px solid #CCC;
+}
+.container .search span{
+    display:inline-block;
+    width:135px;
+    height:40px;
+    background: #3385ff;
+    border:1px solid #3385ff;
+    color:#FFF;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
