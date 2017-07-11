@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 //BrowserRouter HashRouter 浏览器路由容器
 import {
-  BrowserRouter as Router,//路由容器 app
+  HashRouter as Router,//路由容器 app
   Route,//是单条路由 app.get()
   Link //菜单导航，超链接
 } from 'react-router-dom';

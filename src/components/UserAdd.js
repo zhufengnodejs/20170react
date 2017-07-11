@@ -12,7 +12,6 @@ export default class UserAdd extends Component{
     let users = usersStr?JSON.parse(usersStr):[];
     users.push({id:Date.now(),username});
     localStorage.setItem('users',JSON.stringify(users));
-    console.log(this.props);
     this.props.history.push('/user/list');
   }
   render(){
