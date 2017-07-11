@@ -16,6 +16,11 @@ export default class App extends Component {
         <div>
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
+              <div className="navbar-header">
+                <div className="navbar-brand">
+                  <Link to="/">珠峰管理系统</Link>
+                </div>
+              </div>
               <ul className="nav navbar-nav">
                 <li><Link to="/">首页</Link></li>
                 <li><Link to="/user">用户管理</Link></li>
@@ -24,13 +29,9 @@ export default class App extends Component {
             </div>
           </nav>
           <div className="container">
-            <div className="row">
-              <div className="col-md-10 col-md-offset-1">
                 <Route exact={true} path="/" component={Home}/>
                 <Route path="/user" component={User}/>
                 <Route path="/profile" component={Profile}/>
-              </div>
-            </div>
           </div>
         </div>
       </Router>
