@@ -1,6 +1,7 @@
 //中间件其实核心是对dispatch的增强
 //redux的中间件和express中间件原理不一样。但是跟koa中间件原理相似
-import {createStore, applyMiddleware} from './redux';
+//import {createStore, applyMiddleware} from './redux';
+import {createStore, applyMiddleware} from 'redux';
 const ADD = 'ADD';
 let reducer = (state = {number: 0}, action = {}) => {
   switch (action.type) {
@@ -10,21 +11,31 @@ let reducer = (state = {number: 0}, action = {}) => {
       return state;
   }
 }
-let logger = store => next => action => {
+/*let logger = store => next => action => {
   console.log('老状态');
   next(action);
   //store.dispatch(action);
   console.log('新状态');
-}
+}*/
 /*let logger = function({getState,dispatch}){
  return function(next){//store.dispatch
  //最后要返回一个增强后的dispatch方法
  return function (action){
-
  }
  }
  }*/
-let store = applyMiddleware(logger)(createStore)(reducer);
+// TJ
+// redux-thunk
+/*let thunk = ({getState,dispatch}) => next => action => {
+   typeof action == 'function'?action(dispatch):next(action);
+}*/
+let promise =
+
+let store = applyMiddleware(thunk)(createStore)(reducer);
+//store.dispatch = action => {
+//typeof action == 'function'?action(next):next(action);
+//}
+
 //store.dispatch=
 //let store = createStore(reducer);
 function render() {
@@ -34,12 +45,19 @@ function render() {
 `;
   document.querySelector('#addBtn').addEventListener('click', function () {
     //console.log('老状态',store.getState());
-    store.dispatch({type: ADD});
+    store.dispatch(function(dispatch){
+      setTimeout(function(){
+        dispatch({type:ADD});
+      },3000)
+    });
     //console.log('新状态',store.getState());
   })
 }
 render();
 store.subscribe(render);
+//{type:'xx'}
+//Actions must be plain objects. Use custom middleware for async actions.
+//
 
 
 

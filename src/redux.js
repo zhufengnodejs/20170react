@@ -31,14 +31,17 @@ let createStore =(reducer)=>{
  }
 }
 
-let applyMiddleware = xxx=> createStore => reducer=>{
+let applyMiddleware = middleware=> createStore => reducer=>{
   //先获取到原始的store
   let store = createStore(reducer);
   //声明一个dispatch函数变量，初始时指向原始的dispatch方法
   let dispatch;
 
-  let xxx1 = xxx(store);
-  dispatch = xxx1(store.dispatch);
+  middleware = middleware({
+    getState:store.getState,
+    dispatch
+  });
+  dispatch = middleware(store.dispatch);
   return {
     ...store,
     dispatch
