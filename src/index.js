@@ -11,10 +11,10 @@ let reducer = (state = {number: 0}, action = {}) => {
   }
 }
 let logger = store => next => action => {
-  console.log('老状态', store.getState());
+  console.log('老状态');
   next(action);
   //store.dispatch(action);
-  console.log('新状态', store.getState());
+  console.log('新状态');
 }
 /*let logger = function({getState,dispatch}){
  return function(next){//store.dispatch
