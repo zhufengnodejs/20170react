@@ -12,7 +12,7 @@ let createStore =(reducer)=>{
    //store接收到action之后，会返回新的状态
    state = reducer(state,action);
    //通知所有的订阅者
-   listeners.forEach(l=>l());
+   listeners.forEach(listener=>listener());
  }
  //订阅仓库的状态变化事件
  let subscribe = (listener)=>{
@@ -28,4 +28,4 @@ let createStore =(reducer)=>{
  }
 }
 
-export {createStore}
+export {createStore};
