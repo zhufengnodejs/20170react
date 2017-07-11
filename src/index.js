@@ -26,10 +26,12 @@ let reducer = (state = {number: 0}, action = {}) => {
  }*/
 // TJ
 // redux-thunk
-/*let thunk = ({getState,dispatch}) => next => action => {
+//dispatch 是包装后的dispatch
+//next是原始的store.dispatch
+let thunk = ({getState,dispatch}) => next => action => {
    typeof action == 'function'?action(dispatch):next(action);
-}*/
-let promise =
+}
+
 
 let store = applyMiddleware(thunk)(createStore)(reducer);
 //store.dispatch = action => {
