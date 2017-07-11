@@ -4,7 +4,7 @@ export default {
   search:(keyword)=>{
     return function(dispatch){
       //wd=关键字 cb=回调函数参数名
-      dispatch({type:actionTypes.SEARCH});
+      dispatch({type:actionTypes.SEARCH,keyword});
       $.ajax({
         url:`http://www.baidu.com/su`,
         type:'GET',
