@@ -21,11 +21,11 @@ class App extends Component {
             <span>百度一下</span>
           </div>
         </div>
+        {this.props.hint?<div>{this.props.hint}</div>:null}
         <ul className="words">
           {
             this.props.words.map((word,index)=>(<li className="word" key={index}>{word}</li>))
           }
-          <li className="word">联想词</li>
         </ul>
       </div>
     )
