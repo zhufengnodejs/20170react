@@ -14,6 +14,7 @@ export default function User(){
       <div className="col-md-10">
         <Route path="/user/list" component={UserList}/>
         <Route path="/user/add" component={UserAdd}/>
+        <Route path="/user/detail/:id" component={UserDetail}/>
       </div>
     </div>
   )
