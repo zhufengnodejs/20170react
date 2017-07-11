@@ -18,14 +18,38 @@ let createStore =(reducer)=>{
  let subscribe = (listener)=>{
    listeners.push(listener);
    return function(){
-     listeners.filter(l=>l!=listener);
+     listeners = listeners.filter(l=>l!=listener);
    }
  }
  //先在仓库内部调用一次dispatch获得初始值
- dispatch();
+ dispatch({});
  return {
    getState,dispatch,subscribe
  }
 }
 
-export {createStore};
+let applyMiddleware = middleware=> createStore => reducer=>{
+  //先获取到原始的store
+  let store = createStore(reducer);
+  //声明一个dispatch函数变量，初始时指向原始的dispatch方法
+  let dispatch = store.dispatch;
+
+  middleware = middleware({
+    getState:store.getState,
+    dispatch:(action)=>dispatch(action)
+  });
+  dispatch = middleware(store.dispatch);
+  return {
+    ...store,
+    dispatch
+  }
+}
+/*let applyMiddleware = function(middleware){
+ return function(createStore){
+ return function(reducer){
+
+ }
+ }
+ }*/
+
+export {createStore,applyMiddleware};
