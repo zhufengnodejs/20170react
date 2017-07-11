@@ -1,9 +1,2 @@
-import React,{Component} from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import App from './components/App';
-import store from './store';
-import {Provider} from './react-redux';
-ReactDOM.render(<Provider store={store}>
-  <App/>
-</Provider>,document.querySelector('#root'));
+//中间件其实核心是对dispatch的增强
+//redux的中间件和express中间件原理不一样。但是跟koa中间件原理相似
