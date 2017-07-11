@@ -15,7 +15,7 @@ export default class UserList extends Component{
       <ul>
         {
            this.state.users.map((item,index)=>(
-             <li className="list-group-item">
+             <li key={index} className="list-group-item">
                <Link to={"/user/detail/"+item.id}>{item.username}</Link>
              </li>
            ))
