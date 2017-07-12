@@ -10,6 +10,8 @@ import Home from './Home';
 import User from './User';
 import Profile from './Profile';
 import MenuLink from './MenuLink';
+import Private from './Private';
+import Login from './Login';
 export default class App extends Component {
   render() {
     return (
@@ -32,7 +34,8 @@ export default class App extends Component {
           <div className="container">
                 <Route exact={true} path="/" component={Home}/>
                 <Route path="/user" component={User}/>
-                <Route path="/profile" component={Profile}/>
+                <Private path="/profile" component={Profile}/>
+               <Route path="/login" component={Login}/>
           </div>
         </div>
       </Router>
