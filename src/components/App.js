@@ -9,12 +9,13 @@ import {
 import Home from './Home';
 import User from './User';
 import Profile from './Profile';
+import MenuLink from './MenuLink';
 export default class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <nav className="navbar navbar-inverse">
+          <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
                 <div className="navbar-brand">
@@ -22,9 +23,9 @@ export default class App extends Component {
                 </div>
               </div>
               <ul className="nav navbar-nav">
-                <li><Link to="/">首页</Link></li>
-                <li><Link to="/user">用户管理</Link></li>
-                <li><Link to="/profile">个人设置</Link></li>
+                <MenuLink to="/" label="首页"></MenuLink>
+                <MenuLink to="/user" label="用户管理"></MenuLink>
+                <MenuLink to="/profile" label="个人设置"></MenuLink>
               </ul>
             </div>
           </nav>
