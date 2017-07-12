@@ -8,10 +8,11 @@ import {Route,Link} from 'react-router-dom';
  * location pathname路径名
  * children 不管路径是否匹配，都会显示
  */
-export default ({to,label}) =>(
-  <Route exact={true} path={to} children={({match})=>(
-    <li className={match?'active':''}>
+export default ({to,label,exact}) =>(
+  <Route exact={exact} path={to} children={({match})=>{
+    console.log(match);
+    return <li className={match?'active':''}>
       <Link to={to}>{label}</Link>
     </li>
-  )} />
+  }} />
 )

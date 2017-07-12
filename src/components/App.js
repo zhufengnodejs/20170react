@@ -23,9 +23,9 @@ export default class App extends Component {
                 </div>
               </div>
               <ul className="nav navbar-nav">
-                <MenuLink to="/" label="首页"></MenuLink>
-                <MenuLink to="/user" label="用户管理"></MenuLink>
-                <MenuLink to="/profile" label="个人设置"></MenuLink>
+                <MenuLink exact={true} to="/" label="首页"></MenuLink>
+                <MenuLink exact={false} to="/user" label="用户管理"></MenuLink>
+                <MenuLink exact={false} to="/profile" label="个人设置"></MenuLink>
               </ul>
             </div>
           </nav>
